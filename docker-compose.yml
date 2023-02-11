@@ -1,0 +1,12 @@
+version: '4'
+services: 
+    db:
+        image: 'postgres:latest'
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_USER: postgres
+            POSTGRES_DB: wish_list
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
