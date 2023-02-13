@@ -6,7 +6,6 @@ const SessionController = require('./app/controllers/SessionController');
 const UserController = require('./app/controllers/UserController');
 const WishListController = require("./app/controllers/WishListController");
 const WishListsProductController = require("./app/controllers/WishListsProductController");
-const ProductsController = require("./app/controllers/ProductsController");
 
 
 routes.post("/users", UserController.store)
@@ -24,7 +23,5 @@ routes.delete('/customers/:id', CustomerController.deleteCustomer);
 routes.post('/wish-list', WishListController.store);
 
 routes.post('/wish-list-products', WishListsProductController.store);
-
-routes.post('/products', ProductsController.store);
 
 module.exports = routes;

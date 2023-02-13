@@ -3,10 +3,20 @@ const { Customer } = require("../models");
 module.exports = {
   async store(req, res) {
     const { name, email_address } = req.body;
+
+    if(!name || !email_address) {
+      return res.status(400).json({
+        status: 400,
+        message: "All the fields are required"
+      })
+    }
+
     const customer = await Customer.create({
       name: name,
       email_address: email_address,
     });
+
+
     return res.json(customer);
   },
 
@@ -31,7 +41,7 @@ module.exports = {
         { where: { id: req.params.id } }
     );
 
-    return res.status(200).send({ message: 'The customer has been updated' })
+    return res.status(200).send({ message: 'Customer has been updated' })
   },
 
   async deleteCustomer(req, res) {
@@ -39,6 +49,6 @@ module.exports = {
         where: { id: req.params.id }
     });
 
-    return res.status(200).send({ message: 'The customer has been deleted' })
+    return res.status(200).send({ message: 'Customer has been deleted' })
   }
 };

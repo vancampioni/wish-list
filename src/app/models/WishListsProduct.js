@@ -19,12 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "wish_list_id",
       as: "wish_list",
     });
-    WishListProduct.belongsTo(models.WishList, {
-      foreignKey: "wish_list_id",
-    });
-    WishListProduct.belongsTo(models.Product, {
-      foreignKey: "product_id",
-    });
   };
 
   return WishListProduct;

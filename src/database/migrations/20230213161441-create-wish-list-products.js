@@ -24,11 +24,6 @@ module.exports = {
         type: Sequelize.UUID,
         unique: true,
         allowNull: false,
-        references: { 
-          model: 'products',
-          key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
       created_at: {
         type: Sequelize.DATE,
