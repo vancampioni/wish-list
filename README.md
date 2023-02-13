@@ -15,3 +15,4 @@ Para rodar o projeto
 - yarn install
 - docker-compose up -d
 - as informações de conexão estão no arquivo .env
+- yarn dev
