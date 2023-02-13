@@ -1,31 +1,36 @@
-const { WishListsProduct } = require('../models')
+const { WishListsProduct } = require("../models");
 
 module.exports = {
-    async store(req, res) {
-        const { wish_list_id, product_id } = req.body;
+  async store(req, res) {
+    try {
+      const { wish_list_id, product_id } = req.body;
 
-        if(!wish_list_id) {
-          return res.status(400).json({
-            status: 400,
-            message: "Please, provide the wish list id"
-          })
-        }
+      if (!wish_list_id) {
+        return res.status(400).json({
+          status: 400,
+          message: "Please, provide the wish list id",
+        });
+      }
 
-        if(!product_id) {
-          return res.status(400).json({
-            status: 400,
-            message: "Please, provide de product id"
-          })
-        }
-        
-        const wish_list_product = await WishListsProduct.create({
-            wish_list_id: wish_list_id,
-            product_id: product_id
-          });
+      if (!product_id) {
+        return res.status(400).json({
+          status: 400,
+          message: "Please, provide de product id",
+        });
+      }
 
+      const wish_list_product = await WishListsProduct.create({
+        wish_list_id: wish_list_id,
+        product_id: product_id,
+      });
 
-        return res.json(wish_list_product);
-    } 
-
-
-}
+      return res.json(wish_list_product);
+    } catch {
+      return res
+        .status(400)
+        .send({
+          erro: "It was not possible to create a new wish list products",
+        });
+    }
+  },
+};
