@@ -3,27 +3,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    return queryInterface.createTable("wish_lists_products", {
+    return queryInterface.createTable("products", {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
-        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
       },
-      wish_list_id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+      price: {
+        type: Sequelize.DECIMAL,
         allowNull: false,
-        references: { 
-          model: 'wish_lists',
-          key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
-      products_id: {
+      image: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false,
+      },
+      brand: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      review_score: {
+        type: Sequelize.DECIMAL
       },
       created_at: {
         type: Sequelize.DATE,
@@ -37,6 +40,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.dropTable("wish_lists_products");
+    return queryInterface.dropTable("products");
   }
 };

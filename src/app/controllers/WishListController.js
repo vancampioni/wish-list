@@ -6,7 +6,6 @@ module.exports = {
         const wishList = await WishList.create({
             customer_id: customer_id
         })
-
         return res.json(wishList);
     } 
 }

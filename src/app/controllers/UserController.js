@@ -9,6 +9,14 @@ const hashPassword = function (plainPassword) {
 module.exports = {
   async store(req, res) {
     const { email_address, password_hash } = req.body;
+
+    if(!email_address || !password_hash) {
+      return res.status(400).json({
+        status: 400,
+        message: "All the fields are required"
+      })
+    }
+
     const hashedPassword = hashPassword(password_hash);
             const user = await User.create({ 
                 email_address: email_address,
